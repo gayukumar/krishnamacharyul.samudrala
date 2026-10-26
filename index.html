@@ -28,20 +28,22 @@
   --display: "Rozha One", "Georgia", serif;
   --body: "Hind", "Segoe UI", system-ui, sans-serif;
   --radius: 10px;
+  --nav-bg: #FFF3D6; --nav-ink: #4A1410; --nav-muted: #6E3B1E;
+  --hero-top: #FFF8E8; --hero-bottom: #F7DC9C; --hero-ink: #4A1410; --hero-muted: #6E3B1E; --hero-accent: #A8231A;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --bg: #140B0A; --surface: #1E1211; --ink: #F3E8E4; --muted: #C0A7A1; --line: #3A2422;
     --band: #2B0E0D; --on-band: #F8ECE7; --on-band-muted: #D8BBB2;
     --turmeric: #F0B429; --turmeric-soft: #3A2E0F; --kumkum: #F07A6A;
-    --ph-bg: #3A2E0F; --ph-ink: #F6D47A; --dot: rgba(240, 180, 41, 0.10); color-scheme: dark;
+    --ph-bg: #3A2E0F; --ph-ink: #F6D47A; --dot: rgba(240, 180, 41, 0.10); --nav-bg: #2A1609; --nav-ink: #FBEFD5; --nav-muted: #E6CFA6; --hero-top: #2A1609; --hero-bottom: #3E2410; --hero-ink: #FBEFD5; --hero-muted: #E6CFA6; --hero-accent: #F0B429; color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
   --bg: #140B0A; --surface: #1E1211; --ink: #F3E8E4; --muted: #C0A7A1; --line: #3A2422;
   --band: #2B0E0D; --on-band: #F8ECE7; --on-band-muted: #D8BBB2;
   --turmeric: #F0B429; --turmeric-soft: #3A2E0F; --kumkum: #F07A6A;
-  --ph-bg: #3A2E0F; --ph-ink: #F6D47A; --dot: rgba(240, 180, 41, 0.10); color-scheme: dark;
+  --ph-bg: #3A2E0F; --ph-ink: #F6D47A; --dot: rgba(240, 180, 41, 0.10); --nav-bg: #2A1609; --nav-ink: #FBEFD5; --nav-muted: #E6CFA6; --hero-top: #2A1609; --hero-bottom: #3E2410; --hero-ink: #FBEFD5; --hero-muted: #E6CFA6; --hero-accent: #F0B429; color-scheme: dark;
 }
 * { box-sizing: border-box; }
 body { background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 17px; line-height: 1.6; }
@@ -57,33 +59,36 @@ a { color: inherit; }
 .skt { font-family: var(--display); }
 
 /* header */
-body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--band); }
-header.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 9; background: var(--band); color: var(--on-band); border-bottom: 1px solid rgba(255,255,255,0.08); }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--nav-bg); }
+header.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 9; background: var(--nav-bg); color: var(--nav-ink); border-bottom: 2px solid var(--turmeric); box-shadow: 0 2px 12px rgba(120, 70, 10, 0.12); }
 header.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 12px; flex-wrap: wrap; }
 .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-.brand-art { display: block; width: 92px; height: 42px; object-fit: contain; flex: 0 0 auto; filter: drop-shadow(0 0 1px rgba(255, 226, 154, 0.9)) drop-shadow(0 0 8px rgba(240, 180, 41, 0.6)); }
+.brand-art { display: block; width: 96px; height: 54px; object-fit: cover; border-radius: 6px; flex: 0 0 auto; box-shadow: 0 0 0 1.5px var(--turmeric); }
 .brand span { font-weight: 600; font-size: 17px; }
 nav { display: flex; gap: 4px; flex-wrap: wrap; }
-nav a { text-decoration: none; padding: 8px 12px; border-radius: 6px; font-size: 15px; color: var(--on-band-muted); }
-nav a:hover { color: var(--on-band); background: rgba(255,255,255,0.08); }
-nav a.cta { color: var(--band); background: var(--turmeric); font-weight: 600; }
+nav a { text-decoration: none; padding: 8px 12px; border-radius: 6px; font-size: 15px; font-weight: 500; color: var(--nav-muted); }
+nav a:hover { color: var(--nav-ink); background: rgba(201, 138, 0, 0.14); }
+nav a.cta { color: #FFF3D6; background: #8E1B14; font-weight: 600; }
+nav a.cta:hover { color: #FFFFFF; background: #A8231A; }
 
 /* hero */
-.hero { position: relative; background: var(--band); color: var(--on-band); overflow: hidden; }
-.hero canvas { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0.22; pointer-events: none; }
+.hero { position: relative; background: radial-gradient(ellipse 70% 60% at 72% 30%, rgba(255, 236, 170, 0.55), rgba(255, 236, 170, 0) 70%), linear-gradient(180deg, var(--hero-top), var(--hero-bottom)); color: var(--hero-ink); overflow: hidden; }
+.hero canvas { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0.12; pointer-events: none; }
 .hero .wrap { position: relative; display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr); gap: 40px; align-items: center; padding-block: 72px 80px; }
 .hero h1 { font-size: clamp(40px, 6.2vw, 72px); }
-.hero h1 em { font-style: normal; color: var(--turmeric); }
-.hero .lede { margin-top: 20px; font-size: 19px; max-width: 34em; color: var(--on-band-muted); }
+.hero h1 em { font-style: normal; color: var(--hero-accent); }
+.hero .eyebrow { color: var(--hero-accent); }
+.hero .lede { margin-top: 20px; font-size: 19px; max-width: 34em; color: var(--hero-muted); }
 .hero .actions { margin-top: 28px; display: flex; gap: 12px; flex-wrap: wrap; }
 .btn { display: inline-flex; align-items: center; gap: 8px; min-height: 48px; padding: 0 22px; border-radius: 8px; font: 600 16px var(--body); text-decoration: none; border: 0; cursor: pointer; }
-.btn.primary { background: var(--turmeric); color: #1C1405; }
-.btn.ghost { background: transparent; color: var(--on-band); box-shadow: inset 0 0 0 1.5px var(--on-band-muted); }
-.btn.ghost:hover { box-shadow: inset 0 0 0 1.5px var(--on-band); }
+.btn.primary { background: #8E1B14; color: #FFF3D6; }
+.btn.primary:hover { background: #A8231A; }
+.btn.ghost { background: transparent; color: var(--hero-ink); box-shadow: inset 0 0 0 1.5px var(--hero-muted); }
+.btn.ghost:hover { box-shadow: inset 0 0 0 1.5px var(--hero-ink); }
 .shloka { border-left: 0; text-align: center; }
-.shloka .deva { font-family: var(--display); font-size: clamp(26px, 3vw, 34px); color: var(--turmeric); line-height: 1.4; }
-.shloka .tr { margin-top: 10px; font-size: 15px; color: var(--on-band-muted); font-style: italic; }
-.emblem-art { display: block; width: 100%; max-width: 460px; height: auto; margin: 0 auto 22px; filter: drop-shadow(0 0 2px rgba(255, 226, 154, 0.9)) drop-shadow(0 0 18px rgba(240, 180, 41, 0.7)) drop-shadow(0 0 40px rgba(240, 180, 41, 0.35)); }
+.shloka .deva { font-family: var(--display); font-size: clamp(26px, 3vw, 34px); color: var(--hero-accent); line-height: 1.4; }
+.shloka .tr { margin-top: 10px; font-size: 15px; color: var(--hero-muted); font-style: italic; }
+.emblem-art { display: block; width: 100%; max-width: 560px; height: auto; margin: 0 auto 22px; border-radius: 12px; box-shadow: 0 0 0 3px var(--turmeric), 0 14px 34px rgba(120, 60, 0, 0.28); }
 .shloka .deva.small { margin-top: 18px; font-size: clamp(18px, 2vw, 22px); }
 .glow { animation: glow 3.2s ease-in-out infinite; }
 @keyframes glow { 0%,100% { opacity: 1; } 50% { opacity: 0.72; } }
@@ -211,7 +216,7 @@ footer .skt { color: var(--turmeric); font-size: 20px; }
 
 <header class="top">
   <div class="wrap">
-    <a class="brand" href="#top"><img class="brand-art" src="thengalai_cut.png" alt="" aria-hidden="true" width="88" height="40"><span>Krishnamacharyulu Samudrala</span></a>
+    <a class="brand" href="#top"><img class="brand-art" src="venkateswara_scene.jpg" alt="" aria-hidden="true" width="96" height="54"><span>Krishnamacharyulu Samudrala</span></a>
     <nav aria-label="Sections">
       <a href="#temples">Venkateswara</a>
       <a href="#services">Ceremonies</a>
@@ -238,7 +243,7 @@ footer .skt { color: var(--turmeric); font-size: 20px; }
         </div>
       </div>
       <div class="shloka">
-        <img class="emblem-art" src="thengalai_cut.png" alt="Sudarshana chakra, Thengalai namam and shankha, the emblems of Lord Venkateswara" width="1170" height="534">
+        <img class="emblem-art" src="venkateswara_scene.jpg" alt="Garuda and Hanuman with folded hands on either side of the Sudarshana chakra, namam and shankha of Lord Venkateswara" width="946" height="528">
         <p class="deva" lang="sa">ॐ नमो वेङ्कटेशाय</p>
         <p class="tr">Om, salutations to Lord Venkateswara</p>
         <p class="deva small" lang="sa">कौसल्यासुप्रजा राम पूर्वा सन्ध्या प्रवर्तते</p>
@@ -433,7 +438,7 @@ footer .skt { color: var(--turmeric); font-size: 20px; }
     cv.width = Math.max(1, r.width * dpr); cv.height = Math.max(1, r.height * dpr);
     var c = cv.getContext('2d'); c.setTransform(dpr, 0, 0, dpr, 0, 0);
     c.clearRect(0, 0, r.width, r.height);
-    var s = 46, color = getComputedStyle(document.documentElement).getPropertyValue('--on-band').trim() || '#fff';
+    var s = 46, color = getComputedStyle(document.documentElement).getPropertyValue('--hero-ink').trim() || '#4A1410';
     c.strokeStyle = color; c.fillStyle = color; c.lineWidth = 1.6;
     for (var y = s / 2; y < r.height + s; y += s) {
       for (var x = s / 2; x < r.width + s; x += s) {
