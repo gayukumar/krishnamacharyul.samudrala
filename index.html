@@ -1,0 +1,508 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Krishnamacharyulu Samudrala, Hindu priest serving families in Malibu, Los Angeles, San Diego, Riverside and the Inland Empire since 1983. Pujas, homas, weddings and all Hindu ceremonies.">
+<title>Krishnamacharyulu Samudrala</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rozha+One&family=Hind:wght@400;500;600&display=swap">
+<style>
+/* Layout: a temple-maroon hero band with a kolam drawn behind it, then plain leaf-white sections; services follow the order of life's samskaras */
+:root {
+  --bg: #F8F3F2;
+  --surface: #FFFFFF;
+  --ink: #2A1514;
+  --muted: #6B504D;
+  --line: #E6D5D1;
+  --band: #5A1313;
+  --on-band: #FBF1EC;
+  --on-band-muted: #E3C6BC;
+  --turmeric: #C98A00;
+  --turmeric-soft: #F6E3AE;
+  --kumkum: #A8231A;
+  --kumkum-on-band: #E2382B;
+  --dot: rgba(168, 35, 26, 0.13);
+  --ph-bg: #FFF1C2;
+  --ph-ink: #6B4A00;
+  --display: "Rozha One", "Georgia", serif;
+  --body: "Hind", "Segoe UI", system-ui, sans-serif;
+  --radius: 10px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #140B0A; --surface: #1E1211; --ink: #F3E8E4; --muted: #C0A7A1; --line: #3A2422;
+    --band: #2B0E0D; --on-band: #F8ECE7; --on-band-muted: #D8BBB2;
+    --turmeric: #F0B429; --turmeric-soft: #3A2E0F; --kumkum: #F07A6A;
+    --ph-bg: #3A2E0F; --ph-ink: #F6D47A; --dot: rgba(240, 180, 41, 0.10); color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #140B0A; --surface: #1E1211; --ink: #F3E8E4; --muted: #C0A7A1; --line: #3A2422;
+  --band: #2B0E0D; --on-band: #F8ECE7; --on-band-muted: #D8BBB2;
+  --turmeric: #F0B429; --turmeric-soft: #3A2E0F; --kumkum: #F07A6A;
+  --ph-bg: #3A2E0F; --ph-ink: #F6D47A; --dot: rgba(240, 180, 41, 0.10); color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 17px; line-height: 1.6; }
+.wrap { max-width: 1120px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+h1, h2, h3 { font-family: var(--display); font-weight: 400; line-height: 1.12; text-wrap: balance; margin: 0; }
+h2 { font-size: clamp(30px, 4vw, 42px); }
+h3 { font-size: 22px; }
+p { margin: 0; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--turmeric); outline-offset: 2px; border-radius: 4px; }
+.eyebrow { font-size: 13px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--turmeric); }
+.ph { background: var(--ph-bg); color: var(--ph-ink); padding: 0 0.3em; border-radius: 4px; font-weight: 600; }
+.skt { font-family: var(--display); }
+
+/* header */
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--band); }
+header.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 9; background: var(--band); color: var(--on-band); border-bottom: 1px solid rgba(255,255,255,0.08); }
+header.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 12px; flex-wrap: wrap; }
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.brand-art { display: block; width: 92px; height: 42px; object-fit: contain; flex: 0 0 auto; filter: drop-shadow(0 0 1px rgba(255, 226, 154, 0.9)) drop-shadow(0 0 8px rgba(240, 180, 41, 0.6)); }
+.brand span { font-weight: 600; font-size: 17px; }
+nav { display: flex; gap: 4px; flex-wrap: wrap; }
+nav a { text-decoration: none; padding: 8px 12px; border-radius: 6px; font-size: 15px; color: var(--on-band-muted); }
+nav a:hover { color: var(--on-band); background: rgba(255,255,255,0.08); }
+nav a.cta { color: var(--band); background: var(--turmeric); font-weight: 600; }
+
+/* hero */
+.hero { position: relative; background: var(--band); color: var(--on-band); overflow: hidden; }
+.hero canvas { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0.22; pointer-events: none; }
+.hero .wrap { position: relative; display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr); gap: 40px; align-items: center; padding-block: 72px 80px; }
+.hero h1 { font-size: clamp(40px, 6.2vw, 72px); }
+.hero h1 em { font-style: normal; color: var(--turmeric); }
+.hero .lede { margin-top: 20px; font-size: 19px; max-width: 34em; color: var(--on-band-muted); }
+.hero .actions { margin-top: 28px; display: flex; gap: 12px; flex-wrap: wrap; }
+.btn { display: inline-flex; align-items: center; gap: 8px; min-height: 48px; padding: 0 22px; border-radius: 8px; font: 600 16px var(--body); text-decoration: none; border: 0; cursor: pointer; }
+.btn.primary { background: var(--turmeric); color: #1C1405; }
+.btn.ghost { background: transparent; color: var(--on-band); box-shadow: inset 0 0 0 1.5px var(--on-band-muted); }
+.btn.ghost:hover { box-shadow: inset 0 0 0 1.5px var(--on-band); }
+.shloka { border-left: 0; text-align: center; }
+.shloka .deva { font-family: var(--display); font-size: clamp(26px, 3vw, 34px); color: var(--turmeric); line-height: 1.4; }
+.shloka .tr { margin-top: 10px; font-size: 15px; color: var(--on-band-muted); font-style: italic; }
+.emblem-art { display: block; width: 100%; max-width: 460px; height: auto; margin: 0 auto 22px; filter: drop-shadow(0 0 2px rgba(255, 226, 154, 0.9)) drop-shadow(0 0 18px rgba(240, 180, 41, 0.7)) drop-shadow(0 0 40px rgba(240, 180, 41, 0.35)); }
+.shloka .deva.small { margin-top: 18px; font-size: clamp(18px, 2vw, 22px); }
+.glow { animation: glow 3.2s ease-in-out infinite; }
+@keyframes glow { 0%,100% { opacity: 1; } 50% { opacity: 0.72; } }
+@media (prefers-reduced-motion: reduce) { .glow { animation: none; } }
+.temples .wrap { display: grid; gap: 28px; }
+.temple-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+figure { margin: 0; display: grid; gap: 12px; }
+.photo-slot { aspect-ratio: 4 / 3; max-width: 100%; border-radius: var(--radius); background: var(--band); color: var(--on-band-muted); display: grid; place-items: center; text-align: center; padding: 24px; position: relative; overflow: hidden; box-shadow: inset 0 0 0 6px var(--band), inset 0 0 0 8px var(--turmeric); }
+.photo-slot span { font-size: 15px; max-width: 22em; }
+.photo-slot .om-big { display: block; font-family: var(--display); font-size: 64px; color: var(--turmeric); line-height: 1; margin-bottom: 10px; }
+figcaption { display: grid; gap: 2px; }
+figcaption b { font-family: var(--display); font-weight: 400; font-size: 22px; }
+figcaption span { color: var(--muted); font-size: 15px; }
+@media (max-width: 700px) { .temple-grid { grid-template-columns: minmax(0, 1fr); } }
+
+/* facts */
+.facts { background: var(--surface); border-bottom: 1px solid var(--line); }
+.facts .wrap { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; padding-block: 28px; }
+.fact { display: flex; align-items: baseline; gap: 12px; }
+.fact b { font-family: var(--display); font-weight: 400; font-size: 40px; color: var(--kumkum); line-height: 1; font-variant-numeric: lining-nums; }
+.fact span { color: var(--muted); font-size: 15px; line-height: 1.35; }
+
+section { padding-block: 72px; }
+.sec-head { display: grid; gap: 12px; max-width: 46em; margin-bottom: 32px; }
+.sec-head p { color: var(--muted); }
+
+/* services */
+.tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 28px; }
+.tab { min-height: 44px; padding: 0 16px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); font: 500 15px var(--body); cursor: pointer; }
+.tab[aria-pressed="true"] { background: var(--band); color: var(--on-band); border-color: var(--band); }
+.group { display: grid; gap: 14px; margin-bottom: 36px; }
+.group > h3 { display: flex; align-items: baseline; gap: 12px; }
+.group > h3 small { font-family: var(--body); font-size: 14px; color: var(--muted); font-weight: 400; }
+.life { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; border-top: 2px solid var(--turmeric); }
+.life li { position: relative; padding: 22px 18px 18px 0; display: grid; gap: 4px; align-content: start; }
+.life li::before { content: ""; position: absolute; top: -7px; left: 0; width: 12px; height: 12px; border-radius: 50%; background: var(--bg); border: 2px solid var(--turmeric); }
+.life .stage { font-size: 12px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+.life .name { font-weight: 600; font-size: 18px; }
+.life .what { color: var(--muted); font-size: 15px; line-height: 1.45; }
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr)); gap: 12px; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px 18px; display: grid; gap: 4px; align-content: start; }
+.card .name { font-weight: 600; font-size: 17px; }
+.card .what { color: var(--muted); font-size: 15px; line-height: 1.45; }
+.note { color: var(--muted); font-size: 15px; }
+
+/* about */
+.about { background: var(--surface); border-block: 1px solid var(--line); }
+.about .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 48px; align-items: start; }
+.about .copy { display: grid; gap: 16px; max-width: 34em; }
+.gens { display: grid; gap: 0; }
+.gen { display: grid; grid-template-columns: 56px minmax(0, 1fr); gap: 16px; padding: 18px 0; border-bottom: 1px solid var(--line); }
+.gen:first-child { border-top: 1px solid var(--line); }
+.gen .n { font-family: var(--display); font-size: 34px; color: var(--turmeric); line-height: 1; }
+.gen .t { font-weight: 600; }
+.gen .d { color: var(--muted); font-size: 15px; }
+
+/* steps */
+.steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; counter-reset: s; }
+.steps li { counter-increment: s; display: grid; gap: 6px; align-content: start; }
+.steps li::before { content: counter(s); font-family: var(--display); font-size: 28px; color: var(--kumkum); width: 48px; height: 48px; border-radius: 50%; display: grid; place-items: center; background: var(--turmeric-soft); }
+.steps .t { font-weight: 600; }
+.steps .d { color: var(--muted); font-size: 15px; }
+
+/* booking */
+.book .wrap { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); gap: 40px; align-items: start; }
+form { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; display: grid; gap: 16px; }
+.row2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+label { display: grid; gap: 6px; font-size: 14px; font-weight: 600; }
+input, select, textarea { font: 16px var(--body); color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; min-height: 46px; width: 100%; }
+textarea { min-height: 90px; resize: vertical; }
+.summary { display: grid; gap: 10px; }
+.summary[hidden] { display: none; }
+.summary textarea { min-height: 170px; font-size: 15px; }
+.summary .hint { font-size: 14px; color: var(--muted); }
+.contact-card { display: grid; gap: 18px; }
+.line-item { display: grid; gap: 4px; padding-bottom: 16px; border-bottom: 1px solid var(--line); }
+.line-item .k { font-size: 13px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+.line-item .v { font-size: 22px; font-weight: 600; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.copy-btn { min-height: 36px; padding: 0 12px; border-radius: 6px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); font: 500 14px var(--body); cursor: pointer; }
+.btn.dark { background: var(--band); color: var(--on-band); }
+
+
+/* devotional layers */
+.torana { position: absolute; left: 0; right: 0; top: 0; height: 54px; background: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2264%22%20height%3D%2254%22%20viewBox%3D%220%200%2064%2054%22%3E%3Cpath%20d%3D%22M0%206%20Q32%2016%2064%206%22%20fill%3D%22none%22%20stroke%3D%22%23E9B949%22%20stroke-width%3D%222%22/%3E%3Cpath%20d%3D%22M32%2011%20C40%2022%2040%2038%2032%2050%20C24%2038%2024%2022%2032%2011%20Z%22%20fill%3D%22%233E7D3A%22/%3E%3Cpath%20d%3D%22M32%2013%20L32%2048%22%20stroke%3D%22%232A5A27%22%20stroke-width%3D%221%22/%3E%3Ccircle%20cx%3D%222%22%20cy%3D%227%22%20r%3D%226%22%20fill%3D%22%23F28C18%22/%3E%3Ccircle%20cx%3D%222%22%20cy%3D%227%22%20r%3D%223%22%20fill%3D%22%23F7B733%22/%3E%3Ccircle%20cx%3D%2262%22%20cy%3D%227%22%20r%3D%226%22%20fill%3D%22%23F28C18%22/%3E%3Ccircle%20cx%3D%2262%22%20cy%3D%227%22%20r%3D%223%22%20fill%3D%22%23F7B733%22/%3E%3C/svg%3E") repeat-x; background-size: 64px 54px; pointer-events: none; }
+.gopuram { position: absolute; left: 0; right: 0; bottom: 0; width: 100%; height: 200px; color: var(--turmeric); opacity: 0.16; pointer-events: none; }
+.hero .wrap { padding-top: 96px; }
+.shloka { position: relative; }
+.shloka::before { content: ""; position: absolute; left: 50%; top: 100px; width: 340px; height: 340px; max-width: 100%; transform: translate(-50%, -50%); border-radius: 50%; background: radial-gradient(circle, rgba(240, 180, 41, 0.38) 0%, rgba(240, 180, 41, 0.12) 40%, rgba(240, 180, 41, 0) 70%); pointer-events: none; }
+.shloka > * { position: relative; }
+@keyframes turn { to { transform: translate(-50%, -50%) rotate(360deg); } }
+main > section:not(.about):not(.temples) { background-image: radial-gradient(var(--dot) 1.3px, transparent 1.6px); background-size: 28px 28px; }
+.lotus-div { display: flex; justify-content: center; align-items: center; gap: 14px; color: var(--turmeric); padding-block: 4px; }
+.lotus-div::before, .lotus-div::after { content: ""; height: 1px; width: min(200px, 30vw); background: var(--line); }
+.temples { background: var(--band); color: var(--on-band); position: relative; overflow: hidden; }
+.temples .wrap { position: relative; display: grid; justify-items: center; text-align: center; gap: 20px; }
+.temples .emblem { width: min(360px, 100%); height: auto; }
+.temples .mantra { font-family: var(--display); font-size: clamp(34px, 6vw, 64px); color: var(--turmeric); line-height: 1.2; }
+.temples p.lead { color: var(--on-band-muted); max-width: 36em; font-size: 18px; }
+.temples .eyebrow { color: var(--on-band-muted); }
+.temples h2 { color: var(--on-band); }
+.temples::before { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 30%, rgba(240, 180, 41, 0.22), rgba(240, 180, 41, 0) 60%); pointer-events: none; }
+
+footer { background: var(--band); color: var(--on-band-muted); }
+footer .wrap { padding-block: 32px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-size: 15px; }
+footer .skt { color: var(--turmeric); font-size: 20px; }
+
+@media (max-width: 860px) {
+  .hero .wrap, .about .wrap, .book .wrap { grid-template-columns: minmax(0, 1fr); }
+  .hero .wrap { padding-block: 48px 56px; }
+  .life { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 560px) {
+  .facts .wrap { grid-template-columns: minmax(0, 1fr); gap: 14px; }
+  .life, .steps, .row2 { grid-template-columns: minmax(0, 1fr); }
+  nav a:not(.cta) { display: none; }
+  section { padding-block: 52px; }
+}
+@media (max-width: 860px) { .hero .wrap { padding-top: 76px; } .gopuram { height: 120px; } }
+</style>
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)} body{margin:0} img{max-width:100%} [hidden]{display:none!important}</style>
+</head>
+<body>
+
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top"><img class="brand-art" src="thengalai_cut.png" alt="" aria-hidden="true" width="88" height="40"><span>Krishnamacharyulu Samudrala</span></a>
+    <nav aria-label="Sections">
+      <a href="#temples">Venkateswara</a>
+      <a href="#services">Ceremonies</a>
+      <a href="#about">About</a>
+      <a href="#how">How it works</a>
+      <a class="cta" href="#book">Request a ceremony</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <div class="hero">
+    <canvas id="kolam" aria-hidden="true"></canvas>
+    <div class="torana" aria-hidden="true"></div>
+    <svg class="gopuram" viewBox="0 0 1200 220" preserveAspectRatio="xMidYMax meet" aria-hidden="true"><path d="M460.0 220.0 L468.0 190.0 L732.0 190.0 L740.0 220.0 Z M480.0 190.0 L488.0 160.0 L712.0 160.0 L720.0 190.0 Z M500.0 160.0 L508.0 130.0 L692.0 130.0 L700.0 160.0 Z M520.0 130.0 L528.0 100.0 L672.0 100.0 L680.0 130.0 Z M540.0 100.0 L548.0 70.0 L652.0 70.0 L660.0 100.0 Z M545.0 70.0 Q545.0 44.0 600.0 42.0 Q655.0 44.0 655.0 70.0 Z M565.0 44.0 Q570.0 28.0 575.0 44.0 Z M595.0 44.0 Q600.0 28.0 605.0 44.0 Z M625.0 44.0 Q630.0 28.0 635.0 44.0 Z M83.2 220.0 L88.2 201.4 L251.8 201.4 L256.8 220.0 Z M95.6 201.4 L100.6 182.8 L239.4 182.8 L244.4 201.4 Z M108.0 182.8 L113.0 164.2 L227.0 164.2 L232.0 182.8 Z M120.4 164.2 L125.4 145.6 L214.6 145.6 L219.6 164.2 Z M132.8 145.6 L137.8 127.0 L202.2 127.0 L207.2 145.6 Z M135.9 127.0 Q135.9 110.9 170.0 109.6 Q204.1 110.9 204.1 127.0 Z M148.3 110.9 Q151.4 101.0 154.5 110.9 Z M166.9 110.9 Q170.0 101.0 173.1 110.9 Z M185.5 110.9 Q188.6 101.0 191.7 110.9 Z M943.2 220.0 L948.2 201.4 L1111.8 201.4 L1116.8 220.0 Z M955.6 201.4 L960.6 182.8 L1099.4 182.8 L1104.4 201.4 Z M968.0 182.8 L973.0 164.2 L1087.0 164.2 L1092.0 182.8 Z M980.4 164.2 L985.4 145.6 L1074.6 145.6 L1079.6 164.2 Z M992.8 145.6 L997.8 127.0 L1062.2 127.0 L1067.2 145.6 Z M995.9 127.0 Q995.9 110.9 1030.0 109.6 Q1064.1 110.9 1064.1 127.0 Z M1008.3 110.9 Q1011.4 101.0 1014.5 110.9 Z M1026.9 110.9 Q1030.0 101.0 1033.1 110.9 Z M1045.5 110.9 Q1048.6 101.0 1051.7 110.9 Z" fill="currentColor"></path></svg>
+    <div class="wrap">
+      <div>
+        <p class="eyebrow">Hindu priest · Southern California</p>
+        <h1>Vedic rituals for Southern California families <em>since 1983</em></h1>
+        <p class="lede">For 43 years, Krishnamacharyulu Samudrala has performed pujas, homas and life ceremonies for Hindu families in Malibu, Los Angeles, San Diego, Riverside and the Inland Empire. Many households have now called him across three generations, from grandparents' weddings to grandchildren's naming ceremonies.</p>
+        <div class="actions">
+          <a class="btn primary" href="#book">Request a ceremony</a>
+          <a class="btn ghost" href="#services">See all ceremonies</a>
+        </div>
+      </div>
+      <div class="shloka">
+        <img class="emblem-art" src="thengalai_cut.png" alt="Sudarshana chakra, Thengalai namam and shankha, the emblems of Lord Venkateswara" width="1170" height="534">
+        <p class="deva" lang="sa">ॐ नमो वेङ्कटेशाय</p>
+        <p class="tr">Om, salutations to Lord Venkateswara</p>
+        <p class="deva small" lang="sa">कौसल्यासुप्रजा राम पूर्वा सन्ध्या प्रवर्तते</p>
+        <p class="tr">The first line of the Sri Venkateswara Suprabhatam</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="facts">
+    <div class="wrap">
+      <div class="fact"><b>43</b><span>years of service across<br>Southern California</span></div>
+      <div class="fact"><b>3</b><span>generations of families<br>served</span></div>
+      <div class="fact"><b>All</b><span>Hindu rituals, from<br>birth to remembrance</span></div>
+    </div>
+  </div>
+
+  <section class="temples" id="temples">
+    <div class="wrap">
+      <p class="eyebrow">Sri Venkateswara</p>
+      <p class="mantra" lang="sa">ॐ नमो वेङ्कटेशाय</p>
+      <h2>By the grace of Lord Venkateswara</h2>
+      <p class="lead">Every ceremony begins with a prayer to the Lord of the Seven Hills, for the well-being of the family and all who gather.</p>
+    </div>
+  </section>
+
+  <section id="services">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Ceremonies</p>
+        <h2>Every ritual a Hindu family needs</h2>
+        <p>Ceremonies are performed at your home, a temple or a hall, following the Vedic procedure for each rite. If you don't see the ceremony you need, ask. It can almost certainly be arranged.</p>
+      </div>
+
+      <div class="tabs" role="group" aria-label="Filter ceremonies">
+        <button class="tab" type="button" data-f="all" aria-pressed="true">All</button>
+        <button class="tab" type="button" data-f="life" aria-pressed="false">Life samskaras</button>
+        <button class="tab" type="button" data-f="home" aria-pressed="false">Home &amp; new beginnings</button>
+        <button class="tab" type="button" data-f="homa" aria-pressed="false">Pujas &amp; homas</button>
+        <button class="tab" type="button" data-f="fest" aria-pressed="false">Festivals</button>
+      </div>
+
+      <div class="group" data-cat="life">
+        <h3>Life samskaras <small>in the order they come in a life</small></h3>
+        <ol class="life">
+          <li><span class="stage">Birth</span><span class="name">Namakarana</span><span class="what">Naming ceremony for a newborn</span></li>
+          <li><span class="stage">Infancy</span><span class="name">Annaprashana</span><span class="what">Baby's first solid food</span></li>
+          <li><span class="stage">Childhood</span><span class="name">Chaula / Mundan</span><span class="what">First haircut</span></li>
+          <li><span class="stage">Learning</span><span class="name">Aksharabhyasa</span><span class="what">Beginning of education</span></li>
+          <li><span class="stage">Youth</span><span class="name">Upanayana</span><span class="what">Sacred thread ceremony</span></li>
+          <li><span class="stage">Marriage</span><span class="name">Vivaha</span><span class="what">Wedding, with engagement and pre-wedding rites</span></li>
+          <li><span class="stage">Elders</span><span class="name">Shashtiabdapoorthi</span><span class="what">60th birthday, and later milestone birthdays</span></li>
+          <li><span class="stage">Remembrance</span><span class="name">Antyeshti &amp; Shraddha</span><span class="what">Last rites and annual remembrance</span></li>
+        </ol>
+      </div>
+
+      <div class="group" data-cat="home">
+        <h3>Home &amp; new beginnings</h3>
+        <div class="cards">
+          <div class="card"><span class="name">Griha Pravesh</span><span class="what">House-warming when moving into a new home</span></div>
+          <div class="card"><span class="name">Bhoomi Puja</span><span class="what">Blessing the land before construction begins</span></div>
+          <div class="card"><span class="name">Vastu Shanti</span><span class="what">Bringing harmony to a home or workplace</span></div>
+          <div class="card"><span class="name">Vahana Puja</span><span class="what">Blessing a new car or vehicle</span></div>
+          <div class="card"><span class="name">Business opening</span><span class="what">Puja for a new shop, office or venture</span></div>
+        </div>
+      </div>
+
+      <div class="group" data-cat="homa">
+        <h3>Pujas &amp; homas</h3>
+        <div class="cards">
+          <div class="card"><span class="name">Satyanarayana Puja</span><span class="what">For gratitude and new beginnings</span></div>
+          <div class="card"><span class="name">Ganapati Homa</span><span class="what">To remove obstacles before any undertaking</span></div>
+          <div class="card"><span class="name">Navagraha Shanti</span><span class="what">Puja to the nine planetary deities</span></div>
+          <div class="card"><span class="name">Rudrabhisheka</span><span class="what">Abhisheka to Lord Shiva with Sri Rudram</span></div>
+          <div class="card"><span class="name">Lakshmi Puja</span><span class="what">For prosperity and well-being</span></div>
+          <div class="card"><span class="name">Chandi Homa</span><span class="what">Homa to the Divine Mother</span></div>
+          <div class="card"><span class="name">Ayushya Homa</span><span class="what">For long life, often on a child's first birthday</span></div>
+          <div class="card"><span class="name">Sudarshana Homa</span><span class="what">For protection and removal of negativity</span></div>
+        </div>
+      </div>
+
+      <div class="group" data-cat="fest">
+        <h3>Festivals</h3>
+        <div class="cards">
+          <div class="card"><span class="name">Ganesh Chaturthi</span><span class="what">Ganesha puja at home</span></div>
+          <div class="card"><span class="name">Varalakshmi Vratam</span><span class="what">Vrata puja to Goddess Lakshmi</span></div>
+          <div class="card"><span class="name">Navaratri</span><span class="what">Puja during the nine nights of the Goddess</span></div>
+          <div class="card"><span class="name">Diwali Lakshmi Puja</span><span class="what">Lakshmi puja for the festival of lights</span></div>
+          <div class="card"><span class="name">Maha Shivaratri</span><span class="what">Night-long worship of Lord Shiva</span></div>
+        </div>
+      </div>
+      <p class="note">Need an auspicious date? Ask about choosing a muhurta when you request your ceremony.</p>
+    </div>
+  </section>
+
+  <div class="lotus-div" aria-hidden="true"><svg width="44" height="26" viewBox="0 0 44 26"><g fill="currentColor"><path d="M22 2 C27 9 27 17 22 24 C17 17 17 9 22 2 Z"></path><path d="M22 24 C14 22 8 16 6 8 C13 10 19 15 22 24 Z" opacity="0.75"></path><path d="M22 24 C30 22 36 16 38 8 C31 10 25 15 22 24 Z" opacity="0.75"></path></g></svg></div>
+  <section class="about" id="about">
+    <div class="wrap">
+      <div class="copy">
+        <p class="eyebrow">About</p>
+        <h2>A family priest for three generations</h2>
+        <p>Krishnamacharyulu Samudrala has served Hindu families across Malibu, Los Angeles, San Diego, Riverside and the Inland Empire since 1983. Over 43 years he has become a family priest in the traditional sense: the person a household calls for every important moment, and then calls again when the next generation reaches the same moments.</p>
+        <p>Each ceremony is performed with care for the Vedic procedure and with time taken to explain what each step means, so that children and guests can follow and take part.</p>
+      </div>
+      <div class="gens">
+        <div class="gen"><span class="n">1</span><div><p class="t">Grandparents</p><p class="d">Weddings, house-warmings and pujas when families first settled in Southern California.</p></div></div>
+        <div class="gen"><span class="n">2</span><div><p class="t">Their children</p><p class="d">Naming ceremonies, sacred thread ceremonies and weddings for the next generation.</p></div></div>
+        <div class="gen"><span class="n">3</span><div><p class="t">Grandchildren</p><p class="d">Today, the same families call for their own children's first ceremonies.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="lotus-div" aria-hidden="true"><svg width="44" height="26" viewBox="0 0 44 26"><g fill="currentColor"><path d="M22 2 C27 9 27 17 22 24 C17 17 17 9 22 2 Z"></path><path d="M22 24 C14 22 8 16 6 8 C13 10 19 15 22 24 Z" opacity="0.75"></path><path d="M22 24 C30 22 36 16 38 8 C31 10 25 15 22 24 Z" opacity="0.75"></path></g></svg></div>
+  <section id="how">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">How it works</p>
+        <h2>Arranging a ceremony</h2>
+      </div>
+      <ol class="steps">
+        <li><span class="t">Get in touch</span><span class="d">Call, or fill in the request form below with the ceremony and the date you have in mind.</span></li>
+        <li><span class="t">Choose the date</span><span class="d">Settle the date and time together, including an auspicious muhurta if you want one.</span></li>
+        <li><span class="t">Prepare</span><span class="d">Go over what the ceremony needs, from puja items to the space where it will be held.</span></li>
+        <li><span class="t">The ceremony</span><span class="d">At your home, a temple or a hall, with each step explained as it happens.</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="book" id="book" style="padding-top: 0">
+    <div class="wrap">
+      <form id="req" novalidate>
+        <div class="sec-head" style="margin-bottom: 4px">
+          <p class="eyebrow">Request a ceremony</p>
+          <h2>Tell us what you need</h2>
+          <p>Fill this in to write your request, then copy it into a text message or email.</p>
+        </div>
+        <div class="row2">
+          <label for="f-name">Your name<input id="f-name" name="name" autocomplete="name" required></label>
+          <label for="f-phone">Phone<input id="f-phone" name="phone" type="tel" autocomplete="tel" required></label>
+        </div>
+        <div class="row2">
+          <label for="f-cer">Ceremony
+            <select id="f-cer" name="ceremony" required>
+              <option value="">Choose a ceremony</option>
+              <optgroup label="Life samskaras"><option>Namakarana</option><option>Annaprashana</option><option>Chaula / Mundan</option><option>Aksharabhyasa</option><option>Upanayana</option><option>Vivaha (Wedding)</option><option>Shashtiabdapoorthi</option><option>Antyeshti / Shraddha</option></optgroup>
+              <optgroup label="Home"><option>Griha Pravesh</option><option>Bhoomi Puja</option><option>Vastu Shanti</option><option>Vahana Puja</option><option>Business opening</option></optgroup>
+              <optgroup label="Pujas &amp; homas"><option>Satyanarayana Puja</option><option>Ganapati Homa</option><option>Navagraha Shanti</option><option>Rudrabhisheka</option><option>Lakshmi Puja</option><option>Chandi Homa</option><option>Ayushya Homa</option><option>Sudarshana Homa</option></optgroup>
+              <optgroup label="Festivals"><option>Ganesh Chaturthi</option><option>Varalakshmi Vratam</option><option>Navaratri</option><option>Diwali Lakshmi Puja</option><option>Maha Shivaratri</option></optgroup>
+              <option>Something else</option>
+            </select>
+          </label>
+          <label for="f-date">Preferred date<input id="f-date" name="date" type="date"></label>
+        </div>
+        <label for="f-where">Where<input id="f-where" name="where" placeholder="Home address, temple or hall"></label>
+        <label for="f-notes">Anything else<textarea id="f-notes" name="notes" placeholder="Number of guests, muhurta, family traditions to follow"></textarea></label>
+        <div><button class="btn dark" type="submit">Write my request</button></div>
+        <p id="f-err" class="note" role="alert" hidden></p>
+        <div class="summary" id="summary" hidden>
+          <label for="f-out">Your request, ready to send</label>
+          <textarea id="f-out" readonly></textarea>
+          <div><button class="copy-btn" type="button" id="copy-out">Copy request</button></div>
+          <p class="hint">Paste it into a text message or email using the contact details on the right.</p>
+        </div>
+      </form>
+
+      <div class="contact-card">
+        <div class="sec-head" style="margin-bottom: 0">
+          <p class="eyebrow">Contact</p>
+          <h2>Call or write</h2>
+        </div>
+        <div class="line-item"><span class="k">Phone</span><span class="v"><span id="ph-phone" style="font-variant-numeric: tabular-nums">+1 (818) 618-2082</span><button class="copy-btn" type="button" data-copy="ph-phone">Copy</button></span></div>
+        <div class="line-item"><span class="k">Email</span><span class="v"><span id="ph-email" style="overflow-wrap: anywhere">krishnasrimati@gmail.com</span><button class="copy-btn" type="button" data-copy="ph-email">Copy</button></span></div>
+        <div class="line-item"><span class="k">Serving</span><span class="v" style="font-size: 18px">Malibu, Los Angeles, San Diego, Riverside and the Inland Empire</span></div>
+        <p class="note">Ceremonies can be booked for any day of the week. Book early for weddings and festival days.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Krishnamacharyulu Samudrala · Hindu priest, Southern California · Serving families since 1983</span>
+    <span class="skt" lang="sa">ॐ नमो वेङ्कटेशाय · लोकाः समस्ताः सुखिनो भवन्तु</span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  // Kolam behind the hero: rice-flour loops drawn around a dot grid
+  var cv = document.getElementById('kolam');
+  function draw() {
+    var r = cv.getBoundingClientRect(), dpr = window.devicePixelRatio || 1;
+    cv.width = Math.max(1, r.width * dpr); cv.height = Math.max(1, r.height * dpr);
+    var c = cv.getContext('2d'); c.setTransform(dpr, 0, 0, dpr, 0, 0);
+    c.clearRect(0, 0, r.width, r.height);
+    var s = 46, color = getComputedStyle(document.documentElement).getPropertyValue('--on-band').trim() || '#fff';
+    c.strokeStyle = color; c.fillStyle = color; c.lineWidth = 1.6;
+    for (var y = s / 2; y < r.height + s; y += s) {
+      for (var x = s / 2; x < r.width + s; x += s) {
+        var i = Math.round(x / s), j = Math.round(y / s);
+        c.beginPath(); c.arc(x, y, 2, 0, Math.PI * 2); c.fill();
+        c.beginPath();
+        if ((i + j) % 2 === 0) {
+          c.moveTo(x, y - s * 0.42); c.quadraticCurveTo(x + s * 0.42, y - s * 0.42, x + s * 0.42, y);
+          c.quadraticCurveTo(x + s * 0.42, y + s * 0.42, x, y + s * 0.42);
+          c.quadraticCurveTo(x - s * 0.42, y + s * 0.42, x - s * 0.42, y);
+          c.quadraticCurveTo(x - s * 0.42, y - s * 0.42, x, y - s * 0.42);
+        } else {
+          c.arc(x, y, s * 0.2, 0, Math.PI * 2);
+        }
+        c.stroke();
+      }
+    }
+  }
+  draw();
+  window.addEventListener('resize', draw);
+  try { matchMedia('(prefers-color-scheme: dark)').addEventListener('change', draw); } catch (e) {}
+
+  // Ceremony filter
+  var tabs = document.querySelectorAll('.tab'), groups = document.querySelectorAll('.group');
+  tabs.forEach(function (t) {
+    t.addEventListener('click', function () {
+      var f = t.getAttribute('data-f');
+      tabs.forEach(function (o) { o.setAttribute('aria-pressed', String(o === t)); });
+      groups.forEach(function (g) { g.hidden = !(f === 'all' || g.getAttribute('data-cat') === f); });
+    });
+  });
+
+  // Copy helpers
+  function copyText(text, btn, selectEl) {
+    var done = function () { var old = btn.textContent; btn.textContent = 'Copied'; setTimeout(function () { btn.textContent = old; }, 1600); };
+    var fallback = function () {
+      if (selectEl && selectEl.select) { selectEl.focus(); selectEl.select(); }
+      else { var rg = document.createRange(); rg.selectNodeContents(selectEl); var sel = getSelection(); sel.removeAllRanges(); sel.addRange(rg); }
+      btn.textContent = 'Selected, press Ctrl+C';
+      setTimeout(function () { btn.textContent = 'Copy'; }, 2200);
+    };
+    try { navigator.clipboard.writeText(text).then(done, fallback); } catch (e) { fallback(); }
+  }
+  document.querySelectorAll('[data-copy]').forEach(function (b) {
+    b.addEventListener('click', function () { var el = document.getElementById(b.getAttribute('data-copy')); copyText(el.textContent.trim(), b, el); });
+  });
+
+  // Request writer
+  var form = document.getElementById('req'), out = document.getElementById('f-out'), sum = document.getElementById('summary'), err = document.getElementById('f-err');
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var v = function (id) { return document.getElementById(id).value.trim(); };
+    var missing = [];
+    if (!v('f-name')) missing.push('your name');
+    if (!v('f-phone')) missing.push('a phone number');
+    if (!v('f-cer')) missing.push('the ceremony');
+    if (missing.length) { err.textContent = 'Please add ' + missing.join(', ') + ' so the request can be written.'; err.hidden = false; sum.hidden = true; return; }
+    err.hidden = true;
+    var d = v('f-date');
+    var dateText = d ? new Date(d + 'T12:00:00').toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) : 'flexible';
+    var lines = ['Namaste,', '', 'I would like to request a ceremony.', '',
+      'Ceremony: ' + v('f-cer'), 'Preferred date: ' + dateText, 'Location: ' + (v('f-where') || 'to be decided'),
+      v('f-notes') ? 'Notes: ' + v('f-notes') : null, '', 'Name: ' + v('f-name'), 'Phone: ' + v('f-phone'), '', 'Thank you.'];
+    out.value = lines.filter(function (l) { return l !== null; }).join('\n');
+    sum.hidden = false;
+  });
+  document.getElementById('copy-out').addEventListener('click', function (e) { copyText(out.value, e.currentTarget, out); });
+})();
+</script>
+
+</body>
+</html>
