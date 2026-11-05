@@ -377,7 +377,7 @@ footer .skt { color: var(--turmeric); font-size: 20px; }
         <div class="sec-head" style="margin-bottom: 4px">
           <p class="eyebrow">Request a ceremony</p>
           <h2>Tell us what you need</h2>
-          <p>Fill this in to write your request, then copy it into a text message or email.</p>
+          <p>Fill this in and press send. Your request goes straight to the priest by email.</p>
         </div>
         <div class="row2">
           <label for="f-name">Your name<input id="f-name" name="name" autocomplete="name" required></label>
@@ -398,14 +398,10 @@ footer .skt { color: var(--turmeric); font-size: 20px; }
         </div>
         <label for="f-where">Where<input id="f-where" name="where" placeholder="Home address, temple or hall"></label>
         <label for="f-notes">Anything else<textarea id="f-notes" name="notes" placeholder="Number of guests, muhurta, family traditions to follow"></textarea></label>
-        <div><button class="btn dark" type="submit">Write my request</button></div>
+        <input id="f-honey" name="_honey" type="text" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
+        <div><button class="btn dark" type="submit" id="f-send">Send my request</button></div>
         <p id="f-err" class="note" role="alert" hidden></p>
-        <div class="summary" id="summary" hidden>
-          <label for="f-out">Your request, ready to send</label>
-          <textarea id="f-out" readonly></textarea>
-          <div><button class="copy-btn" type="button" id="copy-out">Copy request</button></div>
-          <p class="hint">Paste it into a text message or email using the contact details on the right.</p>
-        </div>
+        <p id="f-ok" class="note" role="status" hidden></p>
       </form>
 
       <div class="contact-card">
@@ -414,7 +410,7 @@ footer .skt { color: var(--turmeric); font-size: 20px; }
           <h2>Call or write</h2>
         </div>
         <div class="line-item"><span class="k">Phone</span><span class="v"><span id="ph-phone" style="font-variant-numeric: tabular-nums">+1 (818) 618-2082</span><button class="copy-btn" type="button" data-copy="ph-phone">Copy</button></span></div>
-        <div class="line-item"><span class="k">Email</span><span class="v"><span id="ph-email" style="overflow-wrap: anywhere">krishnasrimati@gmail.com</span><button class="copy-btn" type="button" data-copy="ph-email">Copy</button></span></div>
+        <div class="line-item"><span class="k">Email</span><span class="v"><span id="ph-email" style="overflow-wrap: anywhere">krishna@priestkrishnam.org</span><button class="copy-btn" type="button" data-copy="ph-email">Copy</button></span></div>
         <div class="line-item"><span class="k">Serving</span><span class="v" style="font-size: 18px">Malibu, Los Angeles, San Diego, Riverside and the Inland Empire</span></div>
         <p class="note">Ceremonies can be booked for any day of the week. Book early for weddings and festival days.</p>
       </div>
@@ -486,26 +482,39 @@ footer .skt { color: var(--turmeric); font-size: 20px; }
     b.addEventListener('click', function () { var el = document.getElementById(b.getAttribute('data-copy')); copyText(el.textContent.trim(), b, el); });
   });
 
-  // Request writer
-  var form = document.getElementById('req'), out = document.getElementById('f-out'), sum = document.getElementById('summary'), err = document.getElementById('f-err');
+  // Request sender (FormSubmit relays the form to the email address below)
+  var MAIL_TO = 'krishna@priestkrishnam.org';
+  var form = document.getElementById('req'), err = document.getElementById('f-err'), ok = document.getElementById('f-ok'), sendBtn = document.getElementById('f-send');
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     var v = function (id) { return document.getElementById(id).value.trim(); };
+    ok.hidden = true;
+    if (v('f-honey')) return;
     var missing = [];
     if (!v('f-name')) missing.push('your name');
     if (!v('f-phone')) missing.push('a phone number');
     if (!v('f-cer')) missing.push('the ceremony');
-    if (missing.length) { err.textContent = 'Please add ' + missing.join(', ') + ' so the request can be written.'; err.hidden = false; sum.hidden = true; return; }
+    if (missing.length) { err.textContent = 'Please add ' + missing.join(', ') + ' so the request can be sent.'; err.hidden = false; return; }
     err.hidden = true;
     var d = v('f-date');
-    var dateText = d ? new Date(d + 'T12:00:00').toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) : 'flexible';
-    var lines = ['Namaste,', '', 'I would like to request a ceremony.', '',
-      'Ceremony: ' + v('f-cer'), 'Preferred date: ' + dateText, 'Location: ' + (v('f-where') || 'to be decided'),
-      v('f-notes') ? 'Notes: ' + v('f-notes') : null, '', 'Name: ' + v('f-name'), 'Phone: ' + v('f-phone'), '', 'Thank you.'];
-    out.value = lines.filter(function (l) { return l !== null; }).join('\n');
-    sum.hidden = false;
+    var dateText = d ? new Date(d + 'T12:00:00').toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) : 'Flexible';
+    var payload = {
+      'Name': v('f-name'), 'Phone': v('f-phone'), 'Ceremony': v('f-cer'),
+      'Preferred date': dateText, 'Location': v('f-where') || 'To be decided', 'Notes': v('f-notes') || '-',
+      _subject: 'Ceremony request: ' + v('f-cer') + ' - ' + v('f-name'),
+      _template: 'table', _captcha: 'false'
+    };
+    var label = sendBtn.textContent;
+    sendBtn.disabled = true; sendBtn.textContent = 'Sending...';
+    fetch('https://formsubmit.co/ajax/' + MAIL_TO, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(payload)
+    }).then(function (r) { return r.json().then(function (j) { if (!r.ok || String(j.success) !== 'true') throw new Error(j.message || 'Send failed'); }); })
+      .then(function () { form.reset(); ok.textContent = 'Thank you. Your request has been sent, and you will hear back soon.'; ok.hidden = false; })
+      .catch(function (x) { console.error('Form send failed:', x); err.textContent = 'Sorry, the request could not be sent (' + ((x && x.message) || 'network error') + '). Please call +1 (818) 618-2082 or email ' + MAIL_TO + '.'; err.hidden = false; })
+      .then(function () { sendBtn.disabled = false; sendBtn.textContent = label; });
   });
-  document.getElementById('copy-out').addEventListener('click', function (e) { copyText(out.value, e.currentTarget, out); });
 })();
 </script>
 
