@@ -482,7 +482,9 @@ footer .skt { color: var(--turmeric); font-size: 20px; }
     b.addEventListener('click', function () { var el = document.getElementById(b.getAttribute('data-copy')); copyText(el.textContent.trim(), b, el); });
   });
 
-  // Request sender (FormSubmit relays the form to the email address below)
+  // Request sender: Web3Forms emails each request to the address the access key was created for.
+  // Get a free key at https://web3forms.com (enter krishna@priestkrishnam.org) and paste it below.
+  var WEB3FORMS_KEY = 'da990057-204f-4b81-9e25-d3c6ffeb48a9';
   var MAIL_TO = 'krishna@priestkrishnam.org';
   var form = document.getElementById('req'), err = document.getElementById('f-err'), ok = document.getElementById('f-ok'), sendBtn = document.getElementById('f-send');
   form.addEventListener('submit', function (e) {
@@ -498,19 +500,24 @@ footer .skt { color: var(--turmeric); font-size: 20px; }
     err.hidden = true;
     var d = v('f-date');
     var dateText = d ? new Date(d + 'T12:00:00').toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) : 'Flexible';
-    var payload = {
-      'Name': v('f-name'), 'Phone': v('f-phone'), 'Ceremony': v('f-cer'),
-      'Preferred date': dateText, 'Location': v('f-where') || 'To be decided', 'Notes': v('f-notes') || '-',
-      _subject: 'Ceremony request: ' + v('f-cer') + ' - ' + v('f-name'),
-      _template: 'table', _captcha: 'false'
-    };
+    var subject = 'Ceremony request: ' + v('f-cer') + ' - ' + v('f-name');
+    var fields = { 'Name': v('f-name'), 'Phone': v('f-phone'), 'Ceremony': v('f-cer'), 'Preferred date': dateText, 'Location': v('f-where') || 'To be decided', 'Notes': v('f-notes') || '-' };
+
+    // No key yet: fall back to opening the visitor's email app so the button still works.
+    if (!WEB3FORMS_KEY || WEB3FORMS_KEY.indexOf('PASTE_') === 0) {
+      var body = Object.keys(fields).map(function (k) { return k + ': ' + fields[k]; }).join('\n');
+      window.location.href = 'mailto:' + MAIL_TO + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent('Namaste,\n\n' + body + '\n\nThank you.');
+      return;
+    }
+
+    var payload = Object.assign({ access_key: WEB3FORMS_KEY, subject: subject, from_name: 'Website request - ' + v('f-name'), botcheck: '' }, fields);
     var label = sendBtn.textContent;
     sendBtn.disabled = true; sendBtn.textContent = 'Sending...';
-    fetch('https://formsubmit.co/ajax/' + MAIL_TO, {
+    fetch('https://api.web3forms.com/submit', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
       body: JSON.stringify(payload)
-    }).then(function (r) { return r.json().then(function (j) { if (!r.ok || String(j.success) !== 'true') throw new Error(j.message || 'Send failed'); }); })
+    }).then(function (r) { return r.json().then(function (j) { if (!r.ok || !j.success) throw new Error(j.message || 'Send failed'); }); })
       .then(function () { form.reset(); ok.textContent = 'Thank you. Your request has been sent, and you will hear back soon.'; ok.hidden = false; })
       .catch(function (x) { console.error('Form send failed:', x); err.textContent = 'Sorry, the request could not be sent (' + ((x && x.message) || 'network error') + '). Please call +1 (818) 618-2082 or email ' + MAIL_TO + '.'; err.hidden = false; })
       .then(function () { sendBtn.disabled = false; sendBtn.textContent = label; });
