@@ -236,7 +236,7 @@ footer .skt { color: var(--turmeric); font-size: 20px; }
       <div>
         <p class="eyebrow">Hindu priest · Southern California</p>
         <h1>Vedic rituals for Southern California families <em>since 1983</em></h1>
-        <p class="lede">For 43 years, Krishnamacharyulu Samudrala has performed pujas, homas and life ceremonies for Hindu families in Malibu, Los Angeles, San Diego, Riverside and the Inland Empire. Many households have now called him across three generations, from grandparents' weddings to grandchildren's naming ceremonies.</p>
+        <p class="lede">For more than <span class="dec-word">four</span> decades, Krishnamacharyulu Samudrala has performed pujas, homas and life ceremonies for Hindu families in Malibu, Los Angeles, San Diego, Riverside and the Inland Empire. Many households have now called him across three generations, from grandparents' weddings to grandchildren's naming ceremonies.</p>
         <div class="actions">
           <a class="btn primary" href="#book">Request a ceremony</a>
           <a class="btn ghost" href="#services">See all ceremonies</a>
@@ -254,7 +254,7 @@ footer .skt { color: var(--turmeric); font-size: 20px; }
 
   <div class="facts">
     <div class="wrap">
-      <div class="fact"><b>43</b><span>years of service across<br>Southern California</span></div>
+      <div class="fact"><b><span class="dec-num">4</span>+</b><span>decades of service across<br>Southern California</span></div>
       <div class="fact"><b>3</b><span>generations of families<br>served</span></div>
       <div class="fact"><b>All</b><span>Hindu rituals, from<br>birth to remembrance</span></div>
     </div>
@@ -344,7 +344,7 @@ footer .skt { color: var(--turmeric); font-size: 20px; }
       <div class="copy">
         <p class="eyebrow">About</p>
         <h2>A family priest for three generations</h2>
-        <p>Krishnamacharyulu Samudrala has served Hindu families across Malibu, Los Angeles, San Diego, Riverside and the Inland Empire since 1983. Over 43 years he has become a family priest in the traditional sense: the person a household calls for every important moment, and then calls again when the next generation reaches the same moments.</p>
+        <p>Krishnamacharyulu Samudrala has served Hindu families across Malibu, Los Angeles, San Diego, Riverside and the Inland Empire since 1983. Over <span class="dec-word">four</span> decades he has become a family priest in the traditional sense: the person a household calls for every important moment, and then calls again when the next generation reaches the same moments.</p>
         <p>Each ceremony is performed with care for the Vedic procedure and with time taken to explain what each step means, so that children and guests can follow and take part.</p>
       </div>
       <div class="gens">
@@ -481,6 +481,14 @@ footer .skt { color: var(--turmeric); font-size: 20px; }
   document.querySelectorAll('[data-copy]').forEach(function (b) {
     b.addEventListener('click', function () { var el = document.getElementById(b.getAttribute('data-copy')); copyText(el.textContent.trim(), b, el); });
   });
+
+  // Decades of service, counted from 1983 so the wording stays current
+  var decades = Math.floor((new Date().getFullYear() - 1983) / 10);
+  var words = ['', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'];
+  if (decades >= 4 && decades < words.length) {
+    document.querySelectorAll('.dec-word').forEach(function (el) { el.textContent = words[decades]; });
+    document.querySelectorAll('.dec-num').forEach(function (el) { el.textContent = decades; });
+  }
 
   // Request sender: Web3Forms emails each request to the address the access key was created for.
   // Get a free key at https://web3forms.com (enter krishna@priestkrishnam.org) and paste it below.
