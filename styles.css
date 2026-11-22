@@ -331,3 +331,15 @@ textarea { min-height: 110px; resize: vertical; }
   .hero .shrine { animation: rise 900ms cubic-bezier(.2, .7, .2, 1) both; }
   @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
 }
+
+/* ---------- Google review ---------- */
+.review { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 48px; align-items: center; border: 1px solid var(--line); border-top: 4px solid var(--turmeric); border-radius: var(--r-md); background: var(--surface); padding: 36px 40px; }
+.qr { margin: 0; display: grid; justify-items: center; gap: 10px; text-align: center; }
+.qr img, .review-mini img { display: block; background: #FFFFFF; padding: 10px; border-radius: 10px; box-shadow: 0 0 0 1px var(--line); image-rendering: pixelated; }
+.qr figcaption { font-size: 14px; color: var(--muted); max-width: 14em; }
+.review-mini { grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: 18px; }
+.review-mini h3 { font-size: 20px; margin-bottom: 4px; }
+@media (max-width: 700px) {
+  .review { grid-template-columns: minmax(0, 1fr); padding: 26px 22px; gap: 28px; }
+  .qr { justify-self: start; }
+}
