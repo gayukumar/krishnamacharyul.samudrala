@@ -349,3 +349,15 @@ textarea { min-height: 110px; resize: vertical; }
   .review-cta .btn { padding: 0 16px; }
 }
 @media (max-width: 340px) { .review-cta .btn { font-size: 15px; padding: 0 12px; } }
+
+/* very small phones: keep the Menu button on screen */
+.brand { min-width: 0; }
+.brand span { min-width: 0; }
+.menu-btn { flex: 0 0 auto; }
+@media (max-width: 360px) {
+  .site-head .wrap { gap: 10px; }
+  .brand { gap: 8px; }
+  .brand-art { width: 56px; height: 32px; }
+  .brand b { font-size: 15px; }
+  .menu-btn { padding: 0 10px; }
+}
