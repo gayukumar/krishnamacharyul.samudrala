@@ -79,7 +79,8 @@
   } catch (e) {}
 
   // Web3Forms emails each request to the address the access key was created for.
-  // Get a free key at https://web3forms.com (enter krishna@priestkrishnam.org) and paste it below.
+  // Do not paste the key here. It is stored as the WEB3FORMS_KEY repository secret on GitHub,
+  // and the deploy workflow (.github/workflows/static.yml) puts it in place when the site is published.
   var WEB3FORMS_KEY = 'PASTE_YOUR_ACCESS_KEY_HERE';
   var MAIL_TO = 'krishna@priestkrishnam.org';
   var err = document.getElementById('f-err'), ok = document.getElementById('f-ok'), sendBtn = document.getElementById('f-send');

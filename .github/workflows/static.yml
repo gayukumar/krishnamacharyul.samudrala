@@ -33,6 +33,16 @@ jobs:
         uses: actions/checkout@v4
       - name: Setup Pages
         uses: actions/configure-pages@v5
+      - name: Insert Web3Forms key from repository secrets
+        env:
+          WEB3FORMS_KEY: ${{ secrets.WEB3FORMS_KEY }}
+        run: |
+          if [ -z "$WEB3FORMS_KEY" ]; then
+            echo "::warning::WEB3FORMS_KEY secret is not set; the request form will open the visitor's email app instead of sending."
+          else
+            sed -i "s|PASTE_YOUR_ACCESS_KEY_HERE|${WEB3FORMS_KEY}|" site.js
+            grep -q "PASTE_YOUR_ACCESS_KEY_HERE" site.js && { echo "::error::Key was not inserted into site.js"; exit 1; } || echo "Web3Forms key inserted."
+          fi
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
